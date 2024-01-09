@@ -22,6 +22,10 @@ export class ExploreContainerComponent {
     })
   }
 
+trackByID(index: number, event: any): number {
+    return event.id;
+  }
+
   updateVoteData(i:any){
     var data={
       id:this.events[i].id,
@@ -31,7 +35,7 @@ export class ExploreContainerComponent {
       dateAdded:this.events[i].dateAdded   
     }
     this.eventService.updateVote(data).subscribe(res=>{
-      console.log(res);
+      this.getEventList()
     })
   }
 }

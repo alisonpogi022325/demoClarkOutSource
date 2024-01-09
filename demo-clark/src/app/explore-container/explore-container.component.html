@@ -1,4 +1,7 @@
-<div id="container" *ngFor="let event of events; index as i">
+<div
+  id="container"
+  *ngFor="let event of events; index as i; trackBy: trackByID"
+>
   <ion-card>
     <img
       alt="Silhouette of mountains"

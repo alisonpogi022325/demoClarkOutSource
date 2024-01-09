@@ -8,8 +8,8 @@ import { Events } from '../Model/Event';
 })
 export class EventService {
   id!: Number;
-  getEvent: any;
-
+  event:any
+  counter:Number | undefined
   constructor(private httpClient:HttpClient) { }
   getEvents():Observable<Events[]>{
 
@@ -23,8 +23,10 @@ export class EventService {
   }
 
   updateVote(event:Events):Observable<Events[]>{
-    
-    var url="http://localhost:8080/api/v1/event/" +event.id + "?vote=" + event.vote;
+    this.event=this.getEventByID(event.id)
+    this.event=event.vote;
+    this.counter=this.event+1
+    var url="http://localhost:8080/api/v1/event/" +event.id + "?vote=" + this.counter;
     return this.httpClient.put<Events[]>(url,event);
   }
 }
